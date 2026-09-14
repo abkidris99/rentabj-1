@@ -1,0 +1,6 @@
+{
+  "name": "RentABJ Homes",
+  "description": "Find verified rental apartments, houses, duplexes and commercial spaces across Abuja.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

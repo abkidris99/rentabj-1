@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog & Abuja Rental Insights | RentABJ Homes</title>
+<meta name="description" content="Explore RentABJ Homes articles, price trend analyses, tenant advisory guides, and neighborhood comparisons for renting across Abuja.">
+<meta property="og:title" content="Blog & Abuja Rental Insights | RentABJ Homes">
+<meta property="og:description" content="Read expert rental tips, estate guides, and market updates across Gwarinpa, Jahi, Katampe, Lifecamp, Wuse and more.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B1F3A;
+    --navy-light:#132a4d;
+    --emerald:#0FA958;
+    --emerald-dark:#0c8a48;
+    --gold:#C8A44D;
+    --white:#FFFFFF;
+    --bg-light:#F7F9FC;
+    --text:#222222;
+    --text-soft:#5a6472;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',sans-serif;
+    color:var(--text);
+    background:var(--white);
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{font-family:'Poppins',sans-serif;font-weight:700;letter-spacing:-0.01em;}
+  a{text-decoration:none;color:inherit;}
+  img{max-width:100%;display:block;}
+  .container{max-width:1180px;margin:0 auto;padding:0 24px;}
+  .eyebrow{
+    display:inline-block;
+    font-family:'Inter',sans-serif;
+    font-weight:700;
+    font-size:0.72rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--emerald-dark);
+    margin-bottom:14px;
+  }
+  .section-title{font-size:clamp(1.6rem,3.4vw,2.4rem);color:var(--navy);margin-bottom:14px;}
+  .section-sub{color:var(--text-soft);font-size:1.02rem;max-width:640px;line-height:1.6;}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    padding:14px 26px;border-radius:12px;font-weight:600;font-size:0.94rem;
+    border:none;cursor:pointer;transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+    font-family:'Inter',sans-serif;
+  }
+  .btn-primary{background:var(--emerald);color:#fff;box-shadow:0 8px 20px rgba(15,169,88,0.28);}
+  .btn-primary:hover{background:var(--emerald-dark);transform:translateY(-2px);}
+  .btn-secondary{background:var(--navy);color:#fff;}
+  .btn-secondary:hover{background:var(--navy-light);transform:translateY(-2px);}
+  .btn-outline{background:transparent;color:var(--navy);border:1.5px solid #d2dbe5;}
+  .btn-outline:hover{background:#f0f4f9;}
+
+  /* HEADER */
+  header{
+    position:sticky;top:0;left:0;right:0;z-index:1000;
+    background:rgba(11,31,58,0.98);backdrop-filter:blur(8px);
+    box-shadow:0 4px 20px rgba(0,0,0,0.12);padding:16px 0;
+  }
+  nav{display:flex;align-items:center;justify-content:space-between;}
+  .logo{font-family:'Poppins',sans-serif;font-weight:800;color:#fff;font-size:1.25rem;display:flex;align-items:center;gap:8px;}
+  .logo .dot{width:9px;height:9px;border-radius:50%;background:var(--gold);}
+  .nav-links{display:flex;align-items:center;gap:28px;list-style:none;}
+  .nav-links a{color:#fff;font-size:0.94rem;font-weight:500;opacity:0.9;transition:opacity .2s;}
+  .nav-links a:hover, .nav-links a.active{opacity:1;color:var(--gold);}
+  .nav-actions{display:flex;align-items:center;gap:14px;}
+  .nav-wa{
+    background:var(--emerald);color:#fff;padding:9px 18px;border-radius:10px;font-size:0.88rem;font-weight:600;
+    display:flex;align-items:center;gap:6px;
+  }
+  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+  .burger span{width:24px;height:2px;background:#fff;display:block;}
+  .mobile-menu{
+    display:none;position:fixed;top:0;right:0;height:100vh;width:76%;max-width:320px;
+    background:var(--navy);z-index:1100;padding:32px 26px;flex-direction:column;gap:22px;
+    transform:translateX(100%);transition:transform .3s ease;
+  }
+  .mobile-menu.open{transform:translateX(0);}
+  .mobile-menu a{color:#fff;font-size:1.05rem;font-weight:600;}
+  .mobile-close{align-self:flex-end;color:#fff;font-size:1.4rem;cursor:pointer;}
+  .backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:1050;}
+  .backdrop.open{display:block;}
+
+  @media (max-width:900px){
+    .nav-links{display:none;}
+    .burger{display:flex;}
+  }
+
+  /* BLOG HERO */
+  .blog-hero{
+    background:linear-gradient(135deg, var(--navy) 0%, #0d2547 100%);
+    color:#fff;padding:70px 0 60px;position:relative;overflow:hidden;
+  }
+  .blog-hero::before{
+    content:'';position:absolute;width:400px;height:400px;border-radius:50%;
+    background:radial-gradient(circle, rgba(200,164,77,0.18), transparent 70%);
+    top:-150px;right:-100px;
+  }
+  .blog-hero h1{font-size:clamp(2rem,4.2vw,3rem);color:#fff;margin-bottom:14px;line-height:1.18;}
+  .blog-hero h1 .accent{color:var(--gold);}
+  .blog-hero p{color:rgba(255,255,255,0.85);font-size:1.06rem;line-height:1.6;max-width:620px;}
+
+  /* SEARCH & CONTROLS */
+  .blog-controls{
+    margin-top:32px;display:flex;gap:16px;flex-wrap:wrap;align-items:center;
+  }
+  .search-box{
+    position:relative;flex-grow:1;max-width:440px;
+  }
+  .search-box input{
+    width:100%;padding:13px 18px 13px 44px;border-radius:12px;border:none;
+    font-family:'Inter',sans-serif;font-size:0.95rem;background:#fff;
+    box-shadow:0 6px 18px rgba(0,0,0,0.15);outline:none;
+  }
+  .search-box .search-ic{
+    position:absolute;left:15px;top:50%;transform:translateY(-50%);
+    color:var(--text-soft);font-size:1.1rem;
+  }
+
+  /* FEATURED POST */
+  .featured-section{padding:50px 0 20px;}
+  .featured-card{
+    background:#fff;border-radius:24px;overflow:hidden;border:1px solid rgba(11,31,58,0.08);
+    box-shadow:0 12px 32px rgba(11,31,58,0.08);display:grid;grid-template-columns:1.2fr 1fr;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .featured-card:hover{transform:translateY(-4px);box-shadow:0 20px 42px rgba(11,31,58,0.14);}
+  .featured-img{height:100%;min-height:360px;position:relative;}
+  .featured-img img{width:100%;height:100%;object-fit:cover;}
+  .featured-badge{
+    position:absolute;top:20px;left:20px;background:var(--navy);color:var(--gold);
+    padding:6px 14px;border-radius:20px;font-size:0.75rem;font-weight:700;
+    letter-spacing:0.06em;text-transform:uppercase;
+  }
+  .featured-body{padding:42px 38px;display:flex;flex-direction:column;justify-content:center;}
+  .featured-meta{display:flex;gap:14px;font-size:0.82rem;color:var(--text-soft);margin-bottom:12px;}
+  .featured-title{font-size:clamp(1.4rem,2.4vw,1.9rem);color:var(--navy);line-height:1.3;margin-bottom:14px;}
+  .featured-desc{color:var(--text-soft);line-height:1.65;font-size:0.96rem;margin-bottom:24px;}
+  @media(max-width:900px){
+    .featured-card{grid-template-columns:1fr;}
+    .featured-img{min-height:240px;}
+    .featured-body{padding:30px 24px;}
+  }
+
+  /* ARCHIVE SECTION */
+  .archive-section{padding:50px 0 90px;}
+  .filter-tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:34px;}
+  .filter-btn{
+    background:#fff;border:1.5px solid #e0e5eb;color:var(--text-soft);
+    padding:9px 20px;border-radius:24px;font-size:0.86rem;font-weight:600;
+    cursor:pointer;transition:all .18s ease;font-family:'Inter',sans-serif;
+  }
+  .filter-btn.active, .filter-btn:hover{background:var(--navy);color:#fff;border-color:var(--navy);}
+
+  .posts-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:28px;
+  }
+  .post-card{
+    background:#fff;border-radius:20px;overflow:hidden;border:1px solid rgba(11,31,58,0.06);
+    box-shadow:0 8px 22px rgba(11,31,58,0.05);display:flex;flex-direction:column;
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .post-card:hover{transform:translateY(-6px);box-shadow:0 18px 36px rgba(11,31,58,0.12);}
+  .post-media{position:relative;height:200px;overflow:hidden;}
+  .post-media img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
+  .post-card:hover .post-media img{transform:scale(1.06);}
+  .post-badge{
+    position:absolute;top:14px;left:14px;background:rgba(11,31,58,0.85);backdrop-filter:blur(6px);
+    color:var(--gold);font-size:0.72rem;font-weight:700;padding:5px 12px;border-radius:20px;
+    letter-spacing:0.04em;text-transform:uppercase;
+  }
+  .post-body{padding:26px 24px;display:flex;flex-direction:column;flex-grow:1;}
+  .post-meta{display:flex;align-items:center;gap:12px;font-size:0.8rem;color:var(--text-soft);margin-bottom:10px;}
+  .post-title{font-size:1.1rem;color:var(--navy);margin-bottom:10px;line-height:1.4;}
+  .post-excerpt{font-size:0.88rem;color:var(--text-soft);line-height:1.6;margin-bottom:20px;flex-grow:1;}
+  .post-read-btn{
+    display:inline-flex;align-items:center;gap:6px;color:var(--emerald-dark);font-weight:700;
+    font-size:0.88rem;border:none;background:transparent;cursor:pointer;padding:0;
+  }
+  .post-read-btn:hover{color:var(--emerald);}
+  .post-card-bottom{
+    display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto;padding-top:14px;border-top:1px solid #f0f3f7;
+  }
+  .share-btn-group{
+    display:inline-flex;align-items:center;gap:6px;
+  }
+  .share-btn{
+    width:32px;height:32px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;
+    border:1px solid #e2e8f0;background:#fff;color:var(--text-soft);cursor:pointer;
+    transition:all .18s ease;font-size:0.82rem;text-decoration:none;
+  }
+  .share-btn:hover{transform:translateY(-2px);box-shadow:0 4px 10px rgba(0,0,0,0.08);}
+  .share-btn.share-wa:hover{background:#25D366;color:#fff;border-color:#25D366;}
+  .share-btn.share-x:hover{background:#000000;color:#fff;border-color:#000000;}
+  .share-btn.share-fb:hover{background:#1877F2;color:#fff;border-color:#1877F2;}
+  .share-btn.share-copy:hover{background:var(--navy);color:#fff;border-color:var(--navy);}
+  .modal-share-bar{
+    display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:12px 18px;
+    background:#f8fafc;border-radius:14px;border:1px solid #e2e8f0;margin:24px 0 10px;
+  }
+  .modal-share-label{font-size:0.84rem;font-weight:600;color:var(--navy);}
+  .featured-share-row{
+    display:flex;align-items:center;gap:12px;margin-top:16px;flex-wrap:wrap;
+  }
+  .copied-toast{
+    position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--navy);
+    color:#fff;padding:10px 22px;border-radius:30px;font-size:0.88rem;font-weight:600;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);z-index:9999;opacity:0;pointer-events:none;
+    transition:opacity .25s ease, transform .25s ease;
+  }
+  .copied-toast.show{opacity:1;transform:translateX(-50%) translateY(-6px);}
+  .empty-state{
+    display:none;text-align:center;padding:60px 20px;grid-column:1/-1;
+    color:var(--text-soft);font-size:1.05rem;
+  }
+
+  @media(max-width:900px){.posts-grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:600px){.posts-grid{grid-template-columns:1fr;}}
+
+  /* NEWSLETTER / CTA */
+  .blog-cta{
+    background:linear-gradient(120deg, var(--emerald) 0%, var(--emerald-dark) 100%);
+    border-radius:26px;padding:50px 36px;color:#fff;text-align:center;margin-top:40px;
+  }
+  .blog-cta h2{color:#fff;margin-bottom:10px;}
+  .blog-cta p{color:rgba(255,255,255,0.92);max-width:540px;margin:0 auto 24px;font-size:0.98rem;}
+  .blog-cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+
+  /* ARTICLE READER MODAL */
+  .article-modal-backdrop{
+    display:none;position:fixed;inset:0;background:rgba(11,31,58,0.75);backdrop-filter:blur(6px);
+    z-index:1200;padding:20px;align-items:center;justify-content:center;
+  }
+  .article-modal-backdrop.open{display:flex;}
+  .article-modal{
+    background:#fff;border-radius:24px;max-width:820px;width:100%;max-height:92vh;
+    overflow-y:auto;position:relative;box-shadow:0 30px 60px rgba(0,0,0,0.3);
+  }
+  .article-modal-header{position:relative;height:320px;}
+  .article-modal-header img{width:100%;height:100%;object-fit:cover;}
+  .article-modal-close{
+    position:absolute;top:16px;right:16px;width:40px;height:40px;border-radius:50%;
+    background:rgba(11,31,58,0.78);color:#fff;border:none;font-size:1.4rem;
+    display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:2;
+    transition:background .2s ease;
+  }
+  .article-modal-close:hover{background:var(--navy);}
+  .article-modal-body{padding:40px 42px;}
+  .article-modal-tag{
+    display:inline-block;color:var(--emerald-dark);background:rgba(15,169,88,0.12);
+    font-weight:700;font-size:0.75rem;padding:6px 14px;border-radius:20px;
+    letter-spacing:0.06em;text-transform:uppercase;margin-bottom:12px;
+  }
+  .article-modal-title{font-size:clamp(1.5rem,3vw,2.2rem);color:var(--navy);margin-bottom:14px;line-height:1.25;}
+  .article-modal-meta{
+    display:flex;gap:18px;color:var(--text-soft);font-size:0.86rem;
+    margin-bottom:26px;border-bottom:1px solid #edf2f7;padding-bottom:18px;
+  }
+  .article-modal-content{font-size:1rem;line-height:1.8;color:var(--text);}
+  .article-modal-content h3{font-size:1.25rem;color:var(--navy);margin:24px 0 10px;}
+  .article-modal-content p{margin-bottom:16px;}
+  .article-modal-content ul{margin:12px 0 18px 22px;line-height:1.7;}
+  .article-modal-footer{
+    margin-top:34px;padding-top:24px;border-top:1px solid #edf2f7;display:flex;
+    justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;
+  }
+  @media(max-width:600px){
+    .article-modal-body{padding:26px 20px;}
+    .article-modal-header{height:200px;}
+  }
+
+  /* FOOTER */
+  footer{background:var(--navy);color:rgba(255,255,255,0.75);padding:56px 0 26px;}
+  .footer-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:30px;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,0.1);}
+  .footer-logo{font-family:'Poppins',sans-serif;font-weight:800;color:#fff;font-size:1.3rem;margin-bottom:10px;}
+  .footer-tagline{max-width:280px;font-size:0.9rem;line-height:1.5;}
+  .footer-links{display:flex;gap:60px;flex-wrap:wrap;}
+  .footer-col h5{color:#fff;font-size:0.85rem;margin-bottom:14px;text-transform:uppercase;letter-spacing:0.06em;}
+  .footer-col a{display:block;font-size:0.88rem;margin-bottom:10px;color:rgba(255,255,255,0.72);}
+  .footer-col a:hover{color:var(--gold);}
+  .footer-bottom{padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:0.82rem;}
+  .social-row{display:flex;gap:14px;}
+  .social-row a{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;}
+  .social-row a:hover{background:var(--gold);}
+</style>
+</head>
+<body>
+
+<div class="backdrop" id="backdrop"></div>
+<div class="mobile-menu" id="mobileMenu">
+  <span class="mobile-close" id="closeMenu">&times;</span>
+  <a href="/#home">Home</a>
+  <a href="/#about">About</a>
+  <a href="/#services">Services</a>
+  <a href="/#locations">Locations</a>
+  <a href="/#property-request">Find a Property</a>
+  <a href="/blog.html" style="color:var(--gold);">Blog & Archive</a>
+  <a href="/#contact">Contact</a>
+  <a href="https://wa.me/2348022908212" class="nav-wa" style="width:fit-content;" target="_blank" rel="noopener">WhatsApp Us</a>
+</div>
+
+<header>
+  <div class="container">
+    <nav>
+      <a href="/#home" class="logo"><span class="dot"></span>RentABJ Homes</a>
+      <ul class="nav-links">
+        <li><a href="/#home">Home</a></li>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#services">Services</a></li>
+        <li><a href="/#locations">Locations</a></li>
+        <li><a href="/#property-request">Find a Property</a></li>
+        <li><a href="/blog.html" class="active">Blog & Archive</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="https://wa.me/2348022908212" class="nav-wa" target="_blank" rel="noopener">WhatsApp</a>
+        <div class="burger" id="burgerBtn"><span></span><span></span><span></span></div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="blog-hero">
+  <div class="container">
+    <span class="eyebrow" style="color:var(--gold);">The RentABJ Knowledge Hub</span>
+    <h1>Abuja Rental Insights, Guides & <span class="accent">Archive</span></h1>
+    <p>In-depth advice on tenancy agreements, pricing breakdowns, neighborhood reviews, and insider tips for smooth renting across the Federal Capital Territory.</p>
+    
+    <div class="blog-controls">
+      <div class="search-box">
+        <span class="search-ic">🔍</span>
+        <input type="text" id="searchInput" placeholder="Search by title, neighborhood (e.g. Jahi, Gwarinpa) or topic...">
+      </div>
+      <a href="/#property-request" class="btn btn-primary">Find a Rental Property</a>
+      <a href="/" class="btn btn-outline" style="background:rgba(255,255,255,0.1);color:#fff;border-color:rgba(255,255,255,0.3);">← Back to Main Website</a>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED ARTICLE -->
+<section class="featured-section">
+  <div class="container">
+    <div class="featured-card">
+      <div class="featured-img">
+        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1000&auto=format&fit=crop" alt="Featured Abuja rental keys">
+        <span class="featured-badge">Featured Guide</span>
+      </div>
+      <div class="featured-body">
+        <div class="featured-meta">
+          <span>📅 May 2026</span>
+          <span>⏱ 4 min read</span>
+          <span>✍ RentABJ Advisory Team</span>
+        </div>
+        <h2 class="featured-title">5 Hidden Costs to Watch Out for When Renting in Abuja</h2>
+        <p class="featured-desc">Beyond base annual rent, agency commissions, legal drafting, caution deposits, and estate service fees can add up to 30% more. Here is the full breakdown so you are never surprised.</p>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+          <button class="btn btn-secondary" onclick="openArticleModal('costs')">Read Full Guide &rarr;</button>
+          <div class="featured-share-row">
+            <span style="font-size:0.84rem;font-weight:600;color:var(--navy);">Share:</span>
+            <div class="share-btn-group" aria-label="Share article">
+              <button class="share-btn share-wa" onclick="shareArticle('whatsapp', 'costs')" title="Share on WhatsApp" aria-label="Share on WhatsApp">💬</button>
+              <button class="share-btn share-x" onclick="shareArticle('twitter', 'costs')" title="Share on X (Twitter)" aria-label="Share on X">𝕏</button>
+              <button class="share-btn share-fb" onclick="shareArticle('facebook', 'costs')" title="Share on Facebook" aria-label="Share on Facebook">f</button>
+              <button class="share-btn share-copy" onclick="shareArticle('copy', 'costs')" title="Copy link" aria-label="Copy link">🔗</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARCHIVE & PREVIOUS ARTICLES -->
+<section class="archive-section bg-light">
+  <div class="container">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:28px;">
+      <div>
+        <span class="eyebrow">Previous & Current Articles</span>
+        <h2 class="section-title" style="margin-bottom:0;">Articles & Neighborhood Guides</h2>
+      </div>
+      <div class="filter-tabs">
+        <button class="filter-btn active" data-filter="all">All Articles</button>
+        <button class="filter-btn" data-filter="guides">Guides</button>
+        <button class="filter-btn" data-filter="neighborhoods">Neighborhoods</button>
+        <button class="filter-btn" data-filter="legal">Tenant Advisory</button>
+        <button class="filter-btn" data-filter="market">Market Trends</button>
+      </div>
+    </div>
+
+    <div class="posts-grid" id="postsGrid">
+
+      <!-- Article 1 -->
+      <article class="post-card" data-category="guides" data-tags="costs fees legal caution money budget">
+        <div class="post-media">
+          <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=700&auto=format&fit=crop" alt="Renting costs" loading="lazy">
+          <span class="post-badge">Renting Guide</span>
+        </div>
+        <div class="post-body">
+          <div class="post-meta"><span>📅 May 2026</span><span>⏱ 4 min read</span></div>
+          <h3 class="post-title">5 Hidden Costs to Watch Out for When Renting in Abuja</h3>
+          <p class="post-excerpt">Understanding legal fees, caution deposits, estate power contributions, and agency commissions.</p>
+          <div class="post-card-bottom">
+            <button class="post-read-btn" onclick="openArticleModal('costs')">Read Article &rarr;</button>
+            <div class="share-btn-group" aria-label="Share article">
+              <button class="share-btn share-wa" onclick="shareArticle('whatsapp', 'costs')" title="Share on WhatsApp" aria-label="Share on WhatsApp">💬</button>
+              <button class="share-btn share-x" onclick="shareArticle('twitter', 'costs')" title="Share on X (Twitter)" aria-label="Share on X">𝕏</button>
+              <button class="share-btn share-fb" onclick="shareArticle('facebook', 'costs')" title="Share on Facebook" aria-label="Share on Facebook">f</button>
+              <button class="share-btn share-copy" onclick="shareArticle('copy', 'costs')" title="Copy link" aria-label="Copy link">🔗</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Article 2 -->
+      <article class="post-card" data-category="neighborhoods" data-tags="gwarinpa jahi location estate commute cbd">
+        <div class="post-media">
+          <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=700&auto=format&fit=crop" alt="Abuja district view" loading="lazy">
+          <span class="post-badge">Neighborhoods</span>
+        </div>
+        <div class="post-body">
+          <div class="post-meta"><span>📅 April 2026</span><span>⏱ 5 min read</span></div>
+          <h3 class="post-title">Living in Gwarinpa vs. Jahi: Which District Suits Your Lifestyle?</h3>
+          <p class="post-excerpt">Detailed comparison of infrastructure, daily commutes to Central Business District, and rental value.</p>
+          <div class="post-card-bottom">
+            <button class="post-read-btn" onclick="openArticleModal('gwarinpa-vs-jahi')">Read Article &rarr;</button>
+            <div class="share-btn-group" aria-label="Share article">
+              <button class="share-btn share-wa" onclick="shareArticle('whatsapp', 'gwarinpa-vs-jahi')" title="Share on WhatsApp" aria-label="Share on WhatsApp">💬</button>
+              <button class="share-btn share-x" onclick="shareArticle('twitter', 'gwarinpa-vs-jahi')" title="Share on X (Twitter)" aria-label="Share on X">𝕏</button>
+              <button class="share-btn share-fb" onclick="shareArticle('facebook', 'gwarinpa-vs-jahi')" title="Share on Facebook" aria-label="Share on Facebook">f</button>
+              <button class="share-btn share-copy" onclick="shareArticle('copy', 'gwarinpa-vs-jahi')" title="Copy link" aria-label="Copy link">🔗</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Article 3 -->
+      <article class="post-card" data-category="legal" data-tags="inspection checklist electricity aedc water dampness">
+        <div class="post-media">
+          <img src="https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&w=700&auto=format&fit=crop" alt="Tenancy checklist" loading="lazy">
+          <span class="post-badge">Tenant Advisory</span>
+        </div>
+        <div class="post-body">
+          <div class="post-meta"><span>📅 March 2026</span><span>⏱ 6 min read</span></div>
+          <h3 class="post-title">Checklist: What to Inspect Before Paying for an Apartment</h3>
+          <p class="post-excerpt">From water pumping setups and pre-paid electricity debts to wall dampness and mobile reception.</p>
+          <div class="post-card-bottom">
+            <button class="post-read-btn" onclick="openArticleModal('checklist')">Read Article &rarr;</button>
+            <div class="share-btn-group" aria-label="Share article">
+              <button class="share-btn share-wa" onclick="shareArticle('whatsapp', 'checklist')" title="Share on WhatsApp" aria-label="Share on WhatsApp">💬</button>
+              <button class="share-btn share-x" onclick="shareArticle('twitter', 'checklist')" title="Share on X (Twitter)" aria-label="Share on X">𝕏</button>
+              <button class="share-btn share-fb" onclick="shareArticle('facebook', 'checklist')" title="Share on Facebook" aria-label="Share on Facebook">f</button>
+              <button class="share-btn share-copy" onclick="shareArticle('copy', 'checklist')" title="Copy link" aria-label="Copy link">🔗</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Article 4 (Archive article) -->
+      <article class="post-card" data-category="neighborhoods" data-tags="katampe dawaki lifecamp hills serenity">
+        <div class="post-media">
+          <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=80&w=700&auto=format&fit=crop" alt="Katampe modern duplexes" loading="lazy">
+          <span class="post-badge">Neighborhoods</span>
+        </div>
+        <div class="post-body">
+          <div class="post-meta"><span>📅 February 2026</span><span>⏱ 5 min read</span></div>
+          <h3 class="post-title">Why Katampe Main & Katampe Extension are Abuja's Fast-Rising Hotspots</h3>
+          <p class="post-excerpt">Perched on the hills with panoramic city views, Katampe offers luxury modern duplexes just minutes from Maitama.</p>
+          <div class="post-card-bottom">
+            <button class="post-read-btn" onclick="openArticleModal('katampe-guide')">Read Article &rarr;</button>
+            <div class="share-btn-group" aria-label="Share article">
+              <button class="share-btn share-wa" onclick="shareArticle('whatsapp', 'katampe-guide')" title="Share on WhatsApp" aria-label="Share on WhatsApp">💬</button>
+              <button class="share-btn share-x" onclick="shareArticle('twitter', 'katampe-guide')" title="Share on X (Twitter)" aria-label="Share on X">𝕏</button>
+              <button class="share-btn share-fb" onclick="shareArticle('facebook', 'katampe-guide')" title="Share on Facebook" aria-label="Share on Facebook">f</button>
+              <button class="share-btn share-copy" onclick="shareArticle('copy', 'katampe-guide')" title="Copy link" aria-label="Copy link">🔗</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Article 5 (Archive article) -->
+      <article class="post-card" data-category="market" data-tags="trends price budget 2026 abuja rentals inflation">
+        <div class="post-media">
+          <img src="https://images.unsplash.com/photo-1560520653-9e0e4c89ab11?q=80&w=700&auto=format&fit=crop" alt="Abuja rental market trends" loading="lazy">
+          <span class="post-badge">Market Trends</span>
+        </div>
+        <div class="post-body">
+          <div class="post-meta"><span>📅 January 2026</span><span>⏱ 4 min read</span></div>
+          <h3 class="post-title">Abuja Rental Market Outlook 2026: Trends & Price Projections</h3>
+          <p class="post-excerpt">What renters should anticipate in 2026 across emerging corridors like Karsana, Dawaki, and Kubwa.</p>
+          <div class="post-card-bottom">
+            <button class="post-read-btn" onclick="openArticleModal('market-outlook')">Read Article &rarr;</button>
+            <div class="share-btn-group" aria-label="Share article">
+              <button class="share-btn share-wa" onclick="shareArticle('whatsapp', 'market-outlook')" title="Share on WhatsApp" aria-label="Share on WhatsApp">💬</button>
+              <button class="share-btn share-x" onclick="shareArticle('twitter', 'market-outlook')" title="Share on X (Twitter)" aria-label="Share on X">𝕏</button>
+              <button class="share-btn share-fb" onclick="shareArticle('facebook', 'market-outlook')" title="Share on Facebook" aria-label="Share on Facebook">f</button>
+              <button class="share-btn share-copy" onclick="shareArticle('copy', 'market-outlook')" title="Copy link" aria-label="Copy link">🔗</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Article 6 (Archive article) -->
+      <article class="post-card" data-category="legal" data-tags="agreement rights quit notice deposit refund landlord">
+        <div class="post-media">
+          <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=700&auto=format&fit=crop" alt="Legal documents" loading="lazy">
+          <span class="post-badge">Tenant Advisory</span>
+        </div>
+        <div class="post-body">
+          <div class="post-meta"><span>📅 December 2025</span><span>⏱ 5 min read</span></div>
+          <h3 class="post-title">Tenant Rights in the FCT: What Your Landlord Can & Cannot Do</h3>
+          <p class="post-excerpt">Key legal protections under Abuja recovery of premises laws regarding eviction notices, rent increases, and privacy.</p>
+          <div class="post-card-bottom">
+            <button class="post-read-btn" onclick="openArticleModal('tenant-rights')">Read Article &rarr;</button>
+            <div class="share-btn-group" aria-label="Share article">
+              <button class="share-btn share-wa" onclick="shareArticle('whatsapp', 'tenant-rights')" title="Share on WhatsApp" aria-label="Share on WhatsApp">💬</button>
+              <button class="share-btn share-x" onclick="shareArticle('twitter', 'tenant-rights')" title="Share on X (Twitter)" aria-label="Share on X">𝕏</button>
+              <button class="share-btn share-fb" onclick="shareArticle('facebook', 'tenant-rights')" title="Share on Facebook" aria-label="Share on Facebook">f</button>
+              <button class="share-btn share-copy" onclick="shareArticle('copy', 'tenant-rights')" title="Copy link" aria-label="Copy link">🔗</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <div class="empty-state" id="emptyState">
+        No articles found matching your search. Try another keyword like "Jahi", "costs", or "checklist".
+      </div>
+    </div>
+
+    <!-- CTA BANNER -->
+    <div class="blog-cta">
+      <h2>Need Help Finding an Apartment in Abuja?</h2>
+      <p>Our experienced team finds verified rental apartments, duplexes and commercial spaces tailored to your exact budget and location.</p>
+      <div class="blog-cta-btns">
+        <a href="/#property-request" class="btn btn-secondary">Submit Property Request</a>
+        <a href="https://wa.me/2348022908212" class="btn" style="background:#fff;color:var(--emerald-dark);" target="_blank" rel="noopener">Chat with an Agent</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARTICLE MODAL READER -->
+<div class="article-modal-backdrop" id="articleModalBackdrop" onclick="closeArticleModal(event)">
+  <div class="article-modal" id="articleModal">
+    <button class="article-modal-close" onclick="closeArticleModalDirect()" aria-label="Close article">&times;</button>
+    <div class="article-modal-header">
+      <img id="modalImg" src="" alt="Article Banner">
+    </div>
+    <div class="article-modal-body">
+      <span class="article-modal-tag" id="modalTag">Category</span>
+      <h2 class="article-modal-title" id="modalTitle">Article Title</h2>
+      <div class="article-modal-meta" id="modalMeta">
+        <span>Published by RentABJ Homes</span>
+        <span id="modalReadTime">5 min read</span>
+      </div>
+      <div class="article-modal-content" id="modalContent">
+        <!-- Content injected dynamically -->
+      </div>
+      <div class="modal-share-bar">
+        <span class="modal-share-label">Share this insight:</span>
+        <div class="share-btn-group">
+          <button class="share-btn share-wa" id="modalShareWa" title="Share on WhatsApp" aria-label="Share on WhatsApp">💬</button>
+          <button class="share-btn share-x" id="modalShareX" title="Share on X (Twitter)" aria-label="Share on X">𝕏</button>
+          <button class="share-btn share-fb" id="modalShareFb" title="Share on Facebook" aria-label="Share on Facebook">f</button>
+          <button class="share-btn share-copy" id="modalShareCopy" title="Copy article link" aria-label="Copy article link">🔗</button>
+        </div>
+      </div>
+      <div class="article-modal-footer">
+        <a href="https://wa.me/2348022908212" class="btn btn-primary" target="_blank" rel="noopener">Ask a Property Specialist</a>
+        <button class="btn btn-secondary" onclick="closeArticleModalDirect()">Close Article</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">RentABJ Homes</div>
+        <p class="footer-tagline">Helping You Find Your Perfect Rental in Abuja.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Navigation</h5>
+          <a href="/#home">Home</a>
+          <a href="/#about">About</a>
+          <a href="/#services">Services</a>
+          <a href="/#locations">Locations</a>
+          <a href="/blog.html">Blog Archive</a>
+        </div>
+        <div class="footer-col">
+          <h5>Legal</h5>
+          <a href="/#">Privacy Policy</a>
+          <a href="/#">Terms & Conditions</a>
+        </div>
+        <div class="footer-col">
+          <h5>Follow Us</h5>
+          <div class="social-row">
+            <a href="https://instagram.com/rentabj" target="_blank" rel="noopener" aria-label="Instagram">◎</a>
+            <a href="http://tiktok.com/@rentabj" target="_blank" rel="noopener" aria-label="TikTok">♪</a>
+            <a href="https://wa.me/2348022908212" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 RentABJ Homes. All rights reserved.</span>
+      <span>Abuja, Nigeria</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu
+  const burger = document.getElementById('burgerBtn');
+  const menu = document.getElementById('mobileMenu');
+  const backdrop = document.getElementById('backdrop');
+  const closeMenu = document.getElementById('closeMenu');
+  function openMenu(){ menu.classList.add('open'); backdrop.classList.add('open'); }
+  function shutMenu(){ menu.classList.remove('open'); backdrop.classList.remove('open'); }
+  burger.addEventListener('click', openMenu);
+  closeMenu.addEventListener('click', shutMenu);
+  backdrop.addEventListener('click', shutMenu);
+
+  // Articles repository
+  const blogArticles = {
+    'costs': {
+      title: '5 Hidden Costs to Watch Out for When Renting in Abuja',
+      category: 'Renting Guide',
+      readTime: '4 min read',
+      image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1200&auto=format&fit=crop',
+      content: `
+        <p>When planning to rent a home in Abuja, many prospective tenants only consider the base annual rent quoted by the landlord or agent. However, unexpected initial fees can add up to 20%–35% more onto your move-in budget.</p>
+        
+        <h3>1. Legal and Agreement Fees</h3>
+        <p>In Abuja, legal fees for drafting the tenancy agreement typically range between 5% to 10% of the annual rent. This covers the attorney drafting and vetting the tenancy terms between you and the property owner.</p>
+        
+        <h3>2. Agency Commission</h3>
+        <p>Real estate agency fees also typically range from 10% in standard transactions. Ensure you work with verified, registered professionals like RentABJ Homes so you receive transparent receipts and guaranteed representation.</p>
+        
+        <h3>3. Caution / Damages Deposit</h3>
+        <p>Most modern landlords and serviced estates require a refundable caution deposit (ranging between ₦100,000 to ₦300,000 or 10% of the rent) to safeguard against damages to fittings, walls, or unpaid utility bills upon exit.</p>
+        
+        <h3>4. Service Charges & Generator Levies</h3>
+        <p>If you are renting in gated estates in Katampe, Jahi, Gwarinpa, or Wuse, confirm what the estate service charge covers. Some service charges include 24/7 security, waste disposal, and estate streetlights, while central power generator fueling might be billed separately on a metered or monthly contribution basis.</p>
+
+        <h3>5. Pre-Paid Electricity Meter Setup</h3>
+        <p>Always inspect whether the apartment has an independent pre-paid meter or if it shares a postpaid AEDC bill with neighboring units. Having your own pre-paid meter avoids disputes and unexpected prior debt.</p>
+      `
+    },
+    'gwarinpa-vs-jahi': {
+      title: 'Living in Gwarinpa vs. Jahi: Which District Suits Your Lifestyle?',
+      category: 'Neighborhoods',
+      readTime: '5 min read',
+      image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=1200&auto=format&fit=crop',
+      content: `
+        <p>Choosing the right district in Abuja often comes down to work commute, family amenities, and your budget. Two of the most sought-after rental destinations in the Federal Capital Territory are Gwarinpa and Jahi.</p>
+
+        <h3>Gwarinpa: The Self-Sustaining Commercial Hub</h3>
+        <p>As one of West Africa's largest residential estates, Gwarinpa has everything right within reach: supermarkets (like NEXT Cash & Carry nearby), top schools, pharmacies, dining spots, and gyms along 1st, 3rd, and 4th Avenue.</p>
+        <ul>
+          <li><strong>Pros:</strong> Vibrant community, endless convenience, wide variety of duplexes and flats.</li>
+          <li><strong>Consideration:</strong> Peak-hour traffic along the Kubwa expressway corridor.</li>
+        </ul>
+
+        <h3>Jahi: Modern Estates & Strategic Central Location</h3>
+        <p>Positioned right beside Katampe and Mabushi, Jahi has seen a boom in modern mini-estates, contemporary terraces, and luxury apartments. It sits closer to the Central Business District (CBD) and Maitama.</p>
+        <ul>
+          <li><strong>Pros:</strong> Fast commute into Central Abuja (under 12 minutes off-peak), newly built contemporary architectures, serene residential pockets.</li>
+          <li><strong>Consideration:</strong> Certain newly developed access roads are still undergoing ongoing municipal paving.</li>
+        </ul>
+
+        <h3>Which One Should You Pick?</h3>
+        <p>If you value proximity to the CBD and newer architectural finishes, Jahi is a prime choice. If you prefer a bustling, fully established neighborhood where you never need to leave the estate for groceries or services, Gwarinpa is hard to beat.</p>
+      `
+    },
+    'checklist': {
+      title: 'Checklist: What to Inspect Before Paying for an Apartment in Abuja',
+      category: 'Tenant Advisory',
+      readTime: '6 min read',
+      image: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&w=1200&auto=format&fit=crop',
+      content: `
+        <p>Before transferring rent to any landlord or managing agent, an in-person, detailed inspection is essential. Here is RentABJ Homes' recommended checklist to safeguard your hard-earned money:</p>
+
+        <h3>1. Water Supply & Pumping Setup</h3>
+        <p>Turn on the kitchen taps, shower heads, and flush the toilets. Ask: Is there a dedicated borehole, public water, or water truck tanker supply? Is the overhead water tank automated?</p>
+
+        <h3>2. Electricity & AEDC Debt Status</h3>
+        <p>Ask for the meter number and verify with the Abuja Electricity Distribution Company (AEDC) that the meter has no accumulated debt left behind by the previous occupant.</p>
+
+        <h3>3. Ceiling and Wall Dampness</h3>
+        <p>Check the edges of ceilings and bathroom walls for damp stains, mildew, or peeling paint—especially if viewing during dry season, as these may reveal leakages during Abuja’s heavy rainy seasons.</p>
+
+        <h3>4. Security Protocols</h3>
+        <p>Examine estate gate entry policies, street lighting, and window burglar bars. A gated compound within a manned estate provides double-layered peace of mind.</p>
+
+        <h3>5. Cell Network Reception</h3>
+        <p>Check your phone's cellular network and mobile data signal in every room of the property. Strong network connectivity is critical for working from home and everyday communications.</p>
+      `
+    },
+    'katampe-guide': {
+      title: 'Why Katampe Main & Katampe Extension are Abuja\'s Fast-Rising Hotspots',
+      category: 'Neighborhoods',
+      readTime: '5 min read',
+      image: 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=80&w=1200&auto=format&fit=crop',
+      content: `
+        <p>Perched high on the rolling hills overlooking Maitama and the inner Abuja valleys, Katampe has rapidly evolved into one of the most exclusive and peaceful residential havens in the FCT.</p>
+
+        <h3>1. Distinction Between Katampe Main & Extension</h3>
+        <p>Katampe Main sits directly adjacent to Maitama along the Murtala Mohammed Expressway, while Katampe Extension offers newly designed gated communities with modern infrastructure, diplomatic residences, and sweeping city vistas.</p>
+
+        <h3>2. Architectural Quality</h3>
+        <p>Most properties in Katampe are newly completed contemporary 4-bedroom terraces, fully detached duplexes with penthouses, and high-spec serviced apartments with underground cabling and perimeter electric fencing.</p>
+
+        <h3>3. Accessibility</h3>
+        <p>Reaching Maitama, Wuse 2, or the Central Business District typically takes under 10 minutes without the gridlock common in satellite suburbs.</p>
+      `
+    },
+    'market-outlook': {
+      title: 'Abuja Rental Market Outlook 2026: Trends & Price Projections',
+      category: 'Market Trends',
+      readTime: '4 min read',
+      image: 'https://images.unsplash.com/photo-1560520653-9e0e4c89ab11?q=80&w=1200&auto=format&fit=crop',
+      content: `
+        <p>As Abuja's urban population continues to expand with professionals and families relocating from across Nigeria, the rental landscape has shown notable patterns:</p>
+
+        <h3>1. Surge in Demand for 2-Bedroom Flats</h3>
+        <p>Two-bedroom apartments in locations like Karsana, Dawaki, and Lifecamp continue to see the highest occupancy velocity due to balanced pricing and favorable estate amenities.</p>
+
+        <h3>2. Demand for Independent Energy Backups</h3>
+        <p>Tenants increasingly prioritize homes with dedicated inverter wiring or solar hybrid setups to cushion against fluctuating grid power and fuel costs.</p>
+
+        <h3>3. Growth Along the Outer Northern Expressway</h3>
+        <p>Continuous road expansion has made areas like Kubwa and Karsana viable alternatives for families seeking spacious compounds at roughly half the rental rates of inner-city districts.</p>
+      `
+    },
+    'tenant-rights': {
+      title: 'Tenant Rights in the FCT: What Your Landlord Can & Cannot Do',
+      category: 'Tenant Advisory',
+      readTime: '5 min read',
+      image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200&auto=format&fit=crop',
+      content: `
+        <p>Navigating tenancy relationships requires knowledge of your lawful rights under applicable recovery of premises statutes in the Federal Capital Territory:</p>
+
+        <h3>1. Statutory Notice Periods</h3>
+        <p>Unless expressly agreed otherwise in a valid written contract, annual tenants are generally entitled to a 6-month notice to quit prior to the expiration of their tenancy.</p>
+
+        <h3>2. Right to Quiet Enjoyment</h3>
+        <p>Once rent is paid, landlords or caretakers are not legally permitted to enter your residence unannounced without reasonable advance notice and consent.</p>
+
+        <h3>3. Arbitrary Rent Increases</h3>
+        <p>Landlords cannot unilaterally raise rent midway through an existing tenancy tenure without mutual negotiation or timely prior notice.</p>
+      `
+    }
+  };
+
+  // Search and filter logic
+  const searchInput = document.getElementById('searchInput');
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const postCards = document.querySelectorAll('.post-card');
+  const emptyState = document.getElementById('emptyState');
+
+  let currentCategory = 'all';
+
+  function filterPosts() {
+    const query = searchInput.value.toLowerCase().trim();
+    let visibleCount = 0;
+
+    postCards.forEach(card => {
+      const category = card.getAttribute('data-category');
+      const tags = (card.getAttribute('data-tags') || '').toLowerCase();
+      const title = card.querySelector('.post-title').textContent.toLowerCase();
+      const excerpt = card.querySelector('.post-excerpt').textContent.toLowerCase();
+
+      const matchesCategory = currentCategory === 'all' || category === currentCategory;
+      const matchesSearch = !query || title.includes(query) || excerpt.includes(query) || tags.includes(query);
+
+      if (matchesCategory && matchesSearch) {
+        card.style.display = 'flex';
+        visibleCount++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
+  }
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentCategory = btn.getAttribute('data-filter');
+      filterPosts();
+    });
+  });
+
+  searchInput.addEventListener('input', filterPosts);
+
+  // Modal open & close
+  let currentModalArticleId = null;
+  window.openArticleModal = function(articleId) {
+    const article = blogArticles[articleId];
+    if (!article) return;
+    currentModalArticleId = articleId;
+
+    document.getElementById('modalImg').src = article.image;
+    document.getElementById('modalImg').alt = article.title;
+    document.getElementById('modalTag').textContent = article.category;
+    document.getElementById('modalTitle').textContent = article.title;
+    document.getElementById('modalReadTime').textContent = article.readTime;
+    document.getElementById('modalContent').innerHTML = article.content;
+
+    document.getElementById('modalShareWa').onclick = () => shareArticle('whatsapp', articleId);
+    document.getElementById('modalShareX').onclick = () => shareArticle('twitter', articleId);
+    document.getElementById('modalShareFb').onclick = () => shareArticle('facebook', articleId);
+    document.getElementById('modalShareCopy').onclick = () => shareArticle('copy', articleId);
+
+    // Update URL query string smoothly so users can copy address bar as well
+    const newUrl = new URL(window.location.href);
+    newUrl.searchParams.set('article', articleId);
+    window.history.replaceState({ article: articleId }, '', newUrl.toString());
+
+    const modalBackdrop = document.getElementById('articleModalBackdrop');
+    modalBackdrop.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+
+  window.closeArticleModalDirect = function() {
+    const modalBackdrop = document.getElementById('articleModalBackdrop');
+    modalBackdrop.classList.remove('open');
+    document.body.style.overflow = '';
+    // Clean up query param if opened
+    const newUrl = new URL(window.location.href);
+    newUrl.searchParams.delete('article');
+    window.history.replaceState({}, '', newUrl.pathname);
+  };
+
+  window.closeArticleModal = function(e) {
+    if (e.target.id === 'articleModalBackdrop') {
+      closeArticleModalDirect();
+    }
+  };
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeArticleModalDirect();
+    }
+  });
+
+  // Social Sharing Handler
+  window.shareArticle = function(platform, articleId) {
+    const article = blogArticles[articleId];
+    const title = article ? article.title : 'Abuja Rental Guide';
+    const shareUrl = window.location.origin + '/blog.html?article=' + encodeURIComponent(articleId);
+    const text = encodeURIComponent(`"${title}" - Read this Abuja rental guide on RentABJ Homes:\n${shareUrl}`);
+
+    if (platform === 'whatsapp') {
+      window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank', 'noopener,noreferrer');
+    } else if (platform === 'twitter') {
+      const tweetText = encodeURIComponent(`"${title}" via @rentabj #AbujaRentals #AbujaRealEstate`);
+      window.open(`https://twitter.com/intent/tweet?text=${tweetText}&url=${encodeURIComponent(shareUrl)}`, '_blank', 'noopener,noreferrer');
+    } else if (platform === 'facebook') {
+      window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`, '_blank', 'noopener,noreferrer');
+    } else if (platform === 'copy') {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(shareUrl).then(() => {
+          showToast('Article link copied to clipboard!');
+        }).catch(() => {
+          fallbackCopy(shareUrl);
+        });
+      } else {
+        fallbackCopy(shareUrl);
+      }
+    }
+  };
+
+  function fallbackCopy(text) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      document.execCommand('copy');
+      showToast('Article link copied to clipboard!');
+    } catch(err) {
+      showToast('Link: ' + text);
+    }
+    document.body.removeChild(ta);
+  }
+
+  function showToast(msg) {
+    let toast = document.getElementById('shareToast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'shareToast';
+      toast.className = 'copied-toast';
+      document.body.appendChild(toast);
+    }
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, 2800);
+  }
+
+  // Check URL param for direct article opening e.g. /blog.html?article=costs
+  const urlParams = new URLSearchParams(window.location.search);
+  const articleParam = urlParams.get('article');
+  if (articleParam && blogArticles[articleParam]) {
+    openArticleModal(articleParam);
+  }
+</script>
+
+</body>
+</html>
