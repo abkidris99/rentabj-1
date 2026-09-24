@@ -37,8 +37,16 @@ export async function generateBlogArticle(
 
   const cleanKey = apiKey.trim();
 
-  // Try gemini-2.5-flash first, fallback to gemini-2.0-flash / gemini-1.5-flash
-  const models = ['gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-1.5-flash'];
+  // Try gemini-3.6-flash first as requested by Gemini API, with robust fallbacks
+  const models = [
+    'gemini-3.6-flash',
+    'gemini-3.8-flash',
+    'gemini-3.7-flash',
+    'gemini-3-flash-preview',
+    'gemini-2.5-flash',
+    'gemini-2.0-flash',
+    'gemini-1.5-flash',
+  ];
   let lastError: any = null;
 
   for (const model of models) {
@@ -104,8 +112,17 @@ export async function generateBlogArticle(
       };
     } catch (err: any) {
       lastError = err;
-      // If error is about model not found, loop to next fallback model
-      if (err.message && (err.message.includes('not found') || err.message.includes('unsupported'))) {
+      const msg = (err?.message || '').toLowerCase();
+      // If error is about model availability, retirement, unsupported, or 404, loop to next fallback model
+      if (
+        msg.includes('no longer available') ||
+        msg.includes('not available') ||
+        msg.includes('not found') ||
+        msg.includes('unsupported') ||
+        msg.includes('deprecated') ||
+        msg.includes('404')
+      ) {
+        console.warn(`[Gemini AI] Model ${model} unavailable, trying next fallback...`, err.message);
         continue;
       }
       // Otherwise throw actual error (e.g. invalid API key)
