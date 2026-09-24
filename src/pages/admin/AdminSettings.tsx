@@ -86,6 +86,21 @@ export const AdminSettings: React.FC = () => {
               onChange={(e) => handleChange('facebookPixelId', e.target.value)}
             />
           </div>
+          <div className="admin-field" style={{ borderTop: '1px solid var(--admin-border)', paddingTop: '12px', marginTop: '12px' }}>
+            <label style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <span>✨ Google Gemini API Key</span>
+              <span style={{ fontSize: '0.72rem', color: '#a855f7', background: 'rgba(168,85,247,0.15)', padding: '1px 6px', borderRadius: '4px' }}>AI Blog</span>
+            </label>
+            <input
+              type="password"
+              placeholder="AIzaSy..."
+              value={settings.geminiApiKey ?? ''}
+              onChange={(e) => handleChange('geminiApiKey', e.target.value)}
+            />
+            <span className="admin-field-hint">
+              Powers the 1-click AI Blog Draft Assistant. Get a free API key at <a href="https://aistudio.google.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--admin-blue)' }}>aistudio.google.com</a>
+            </span>
+          </div>
         </div>
 
         {/* Contact Info */}

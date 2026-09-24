@@ -71,6 +71,7 @@ export interface SiteSettings {
   googleAnalyticsId?: string;
   googleTagManagerId?: string;
   facebookPixelId?: string;
+  geminiApiKey?: string;
   heroHeadline?: string;
   heroSubtext?: string;
   businessHoursWeekdays?: string;
