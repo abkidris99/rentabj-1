@@ -284,3 +284,139 @@ export async function deleteProperty(id: string): Promise<void> {
   const { error } = await supabase.from('properties').delete().eq('id', id);
   if (error) throw error;
 }
+
+// ─── VISITOR ANALYTICS ────────────────────────────────────────────────────────
+
+export interface PageViewItem {
+  id: string;
+  path: string;
+  referrer: string;
+  device: string;
+  browser: string;
+  session_id: string;
+  created_at: string;
+}
+
+export interface VisitorStats {
+  totalViews: number;
+  todayViews: number;
+  weekViews: number;
+  totalUnique: number;
+  todayUnique: number;
+  weekUnique: number;
+  topPages: { path: string; count: number }[];
+  sources: { source: string; count: number; percentage: number }[];
+  devices: { device: string; count: number; percentage: number }[];
+  recentVisits: PageViewItem[];
+}
+
+export async function recordPageView(data: {
+  path: string;
+  referrer?: string;
+  device?: string;
+  browser?: string;
+  sessionId?: string;
+}): Promise<void> {
+  try {
+    await supabase.from('page_views').insert({
+      path: data.path,
+      referrer: data.referrer || 'Direct',
+      device: data.device || 'Desktop',
+      browser: data.browser || 'Unknown',
+      session_id: data.sessionId || 'anonymous',
+    });
+  } catch (err) {
+    // Fail silently so visitor experience is never interrupted
+    console.debug('Analytics record error:', err);
+  }
+}
+
+export async function getVisitorStats(): Promise<VisitorStats> {
+  const { data, error } = await supabase
+    .from('page_views')
+    .select('*')
+    .order('created_at', { ascending: false })
+    .limit(2000);
+
+  if (error) {
+    console.warn('Visitor stats error (table may need creation):', error);
+    return {
+      totalViews: 0,
+      todayViews: 0,
+      weekViews: 0,
+      totalUnique: 0,
+      todayUnique: 0,
+      weekUnique: 0,
+      topPages: [],
+      sources: [],
+      devices: [],
+      recentVisits: [],
+    };
+  }
+
+  const items: PageViewItem[] = data || [];
+  const now = new Date();
+  const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+  const sevenDaysAgo = now.getTime() - 7 * 24 * 60 * 60 * 1000;
+
+  const todayItems = items.filter((i) => new Date(i.created_at).getTime() >= startOfToday);
+  const weekItems = items.filter((i) => new Date(i.created_at).getTime() >= sevenDaysAgo);
+
+  const totalSessions = new Set(items.map((i) => i.session_id)).size;
+  const todaySessions = new Set(todayItems.map((i) => i.session_id)).size;
+  const weekSessions = new Set(weekItems.map((i) => i.session_id)).size;
+
+  // Top Pages
+  const pageMap: Record<string, number> = {};
+  items.forEach((i) => {
+    const p = i.path || '/';
+    pageMap[p] = (pageMap[p] || 0) + 1;
+  });
+  const topPages = Object.entries(pageMap)
+    .map(([path, count]) => ({ path, count }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 5);
+
+  // Sources
+  const sourceMap: Record<string, number> = {};
+  items.forEach((i) => {
+    const s = i.referrer || 'Direct / Bookmarks';
+    sourceMap[s] = (sourceMap[s] || 0) + 1;
+  });
+  const totalSources = items.length || 1;
+  const sources = Object.entries(sourceMap)
+    .map(([source, count]) => ({
+      source,
+      count,
+      percentage: Math.round((count / totalSources) * 100),
+    }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 5);
+
+  // Devices
+  const deviceMap: Record<string, number> = { Mobile: 0, Desktop: 0, Tablet: 0 };
+  items.forEach((i) => {
+    const d = i.device || 'Desktop';
+    deviceMap[d] = (deviceMap[d] || 0) + 1;
+  });
+  const totalDev = items.length || 1;
+  const devices = Object.entries(deviceMap).map(([device, count]) => ({
+    device,
+    count,
+    percentage: Math.round((count / totalDev) * 100),
+  }));
+
+  return {
+    totalViews: items.length,
+    todayViews: todayItems.length,
+    weekViews: weekItems.length,
+    totalUnique: totalSessions,
+    todayUnique: todaySessions,
+    weekUnique: weekSessions,
+    topPages,
+    sources,
+    devices,
+    recentVisits: items.slice(0, 8),
+  };
+}
+

@@ -17,9 +17,15 @@ import { AdminBlog } from './pages/admin/AdminBlog';
 import { AdminProperties } from './pages/admin/AdminProperties';
 import { AdminSettings } from './pages/admin/AdminSettings';
 
-// Scroll to hash element on hash change or route transition
+import { trackVisitor } from './lib/tracker';
+
+// Scroll to hash element on hash change or route transition & track visitor
 const ScrollToHash: React.FC = () => {
   const location = useLocation();
+
+  useEffect(() => {
+    trackVisitor(location.pathname, location.search);
+  }, [location.pathname, location.search]);
 
   useEffect(() => {
     if (location.hash) {
