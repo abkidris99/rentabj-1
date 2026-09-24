@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Navy Background -->
+  <rect width="64" height="64" rx="16" fill="#0B1F3A"/>
+  <!-- Gold Accent Inner Border -->
+  <rect x="1" y="1" width="62" height="62" rx="15" stroke="#C8A44D" stroke-opacity="0.35" stroke-width="1.5"/>
+
+  <!-- Modern House Silhouette -->
+  <path d="M32 12L14 26.5V48C14 49.6569 15.3431 51 17 51H47C48.6569 51 50 49.6569 50 48V26.5L32 12Z" fill="#132F54"/>
+  
+  <!-- Emerald Roof Gable -->
+  <path d="M32 11L11 27.5L14.5 31.5L32 17L49.5 31.5L53 27.5L32 11Z" fill="#0FA958"/>
+  
+  <!-- Gold Doorway Pillar -->
+  <rect x="27.5" y="33" width="9" height="18" rx="2" fill="#C8A44D"/>
+
+  <!-- Brand Signature Gold Dot -->
+  <circle cx="32" cy="24" r="3.8" fill="#C8A44D"/>
+</svg>
