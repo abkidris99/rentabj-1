@@ -6,7 +6,6 @@ import {
   deleteArticle,
   ArticleDoc,
 } from '../../lib/supabaseService';
-import { blogArticlesList } from '../../data/blogArticles';
 
 const CATEGORIES = [
   { name: 'Renting Guide', slug: 'guides' },
@@ -51,7 +50,6 @@ export const AdminBlog: React.FC = () => {
   const [editingId, setEditingId] = useState<string | null>(null);
   const [form, setForm] = useState<Omit<ArticleDoc, 'id' | 'created_at' | 'updated_at'>>(INITIAL_FORM);
   const [saving, setSaving] = useState(false);
-  const [seeding, setSeeding] = useState(false);
 
   const fetchArticlesData = async () => {
     try {
@@ -159,35 +157,7 @@ export const AdminBlog: React.FC = () => {
     }
   };
 
-  // Seed default site articles into Supabase
-  const handleSeedDefaults = async () => {
-    if (!window.confirm('Import the 6 default Abuja rental guide articles into your database?')) return;
-    try {
-      setSeeding(true);
-      for (const item of blogArticlesList) {
-        await saveArticle({
-          title: item.title,
-          category: item.category,
-          categorySlug: item.categorySlug,
-          readTime: item.readTime,
-          date: item.date,
-          author: item.author || 'RentABJ Advisory Team',
-          excerpt: item.excerpt,
-          image: item.image,
-          tags: item.tags || '',
-          content: item.content,
-          published: true,
-        });
-      }
-      setFeedback('Successfully imported default guide articles!');
-      await fetchArticlesData();
-      setTimeout(() => setFeedback(null), 3500);
-    } catch (err: any) {
-      alert(err.message || 'Failed to import articles');
-    } finally {
-      setSeeding(false);
-    }
-  };
+
 
   const filteredArticles = articles.filter((a) => {
     const q = searchQuery.toLowerCase().trim();
@@ -214,15 +184,6 @@ export const AdminBlog: React.FC = () => {
           <p>Publish neighborhood guides, rental advice, and market insights for your visitors.</p>
         </div>
         <div style={{ display: 'flex', gap: '10px' }}>
-          {articles.length === 0 && !loading && (
-            <button
-              onClick={handleSeedDefaults}
-              disabled={seeding}
-              className="admin-btn admin-btn-outline"
-            >
-              {seeding ? 'Importing…' : '📥 Import Default Articles'}
-            </button>
-          )}
           <button onClick={openAddModal} className="admin-btn admin-btn-success">
             + New Article
           </button>
@@ -321,9 +282,6 @@ export const AdminBlog: React.FC = () => {
           </p>
           {articles.length === 0 && (
             <div style={{ display: 'flex', gap: '10px', justifyContent: 'center' }}>
-              <button onClick={handleSeedDefaults} disabled={seeding} className="admin-btn admin-btn-outline">
-                {seeding ? 'Importing…' : '📥 Import 6 Default Articles'}
-              </button>
               <button onClick={openAddModal} className="admin-btn admin-btn-success">
                 + Write First Article
               </button>

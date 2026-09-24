@@ -73,8 +73,8 @@ export const BlogPage: React.FC<BlogPageProps> = ({
     });
   }, [searchQuery, currentCategory, articlesList]);
 
-  // Featured post is the first article or costs
-  const featuredPost = articlesList[0] || blogArticles['costs'];
+  // Featured post is the first article or null
+  const featuredPost = articlesList[0] || null;
 
   return (
     <main>
