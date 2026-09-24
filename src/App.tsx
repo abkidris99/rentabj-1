@@ -42,6 +42,37 @@ const PublicSite: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeArticleId, setActiveArticleId] = useState<string | null>(null);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [articlesMap, setArticlesMap] = useState<Record<string, any>>(blogArticles);
+
+  useEffect(() => {
+    // Dynamic import / fetch so it works smoothly
+    import('./lib/supabaseService')
+      .then(({ getArticles }) => getArticles())
+      .then((items) => {
+        const published = items.filter((a) => a.published !== false);
+        if (published.length > 0) {
+          const map: Record<string, any> = { ...blogArticles };
+          published.forEach((a) => {
+            const id = a.id || a.title;
+            map[id] = {
+              id,
+              title: a.title,
+              category: a.category,
+              categorySlug: a.categorySlug,
+              readTime: a.readTime,
+              date: a.date,
+              author: a.author,
+              excerpt: a.excerpt,
+              image: a.image,
+              tags: a.tags,
+              content: a.content,
+            };
+          });
+          setArticlesMap(map);
+        }
+      })
+      .catch((err) => console.warn('Supabase articles fetch:', err));
+  }, []);
 
   const showToast = useCallback((msg: string) => {
     setToastMessage(msg);
@@ -58,7 +89,7 @@ const PublicSite: React.FC = () => {
 
   const handleShareArticle = useCallback(
     (platform: 'whatsapp' | 'twitter' | 'facebook' | 'copy', articleId: string) => {
-      const article = blogArticles[articleId];
+      const article = articlesMap[articleId] || blogArticles[articleId];
       const title = article ? article.title : 'Abuja Rental Guide';
       const shareUrl = `${window.location.origin}/blog?article=${encodeURIComponent(articleId)}`;
       const text = `"${title}" - Read this Abuja rental guide on RentABJ Homes:\n${shareUrl}`;
@@ -93,7 +124,7 @@ const PublicSite: React.FC = () => {
         }
       }
     },
-    [showToast]
+    [showToast, articlesMap]
   );
 
   const fallbackCopy = (text: string) => {
@@ -110,7 +141,7 @@ const PublicSite: React.FC = () => {
     document.body.removeChild(ta);
   };
 
-  const activeArticle = activeArticleId ? blogArticles[activeArticleId] || null : null;
+  const activeArticle = activeArticleId ? articlesMap[activeArticleId] || blogArticles[activeArticleId] || null : null;
 
   return (
     <>

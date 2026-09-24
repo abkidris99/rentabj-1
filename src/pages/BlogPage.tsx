@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { blogArticlesList, blogArticles } from '../data/blogArticles';
+import { getArticles } from '../lib/supabaseService';
 import { BlogCard } from '../components/BlogCard';
-import { siteConfig } from '../data/siteConfig';
+import { BlogArticle } from '../types';
 
 interface BlogPageProps {
   onReadArticle: (articleId: string) => void;
@@ -19,11 +20,38 @@ export const BlogPage: React.FC<BlogPageProps> = ({
   const [searchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState('');
   const [currentCategory, setCurrentCategory] = useState<string>('all');
+  const [articlesList, setArticlesList] = useState<BlogArticle[]>(blogArticlesList);
+
+  useEffect(() => {
+    getArticles()
+      .then((data) => {
+        const published = data.filter((a) => a.published !== false);
+        if (published.length > 0) {
+          const mapped: BlogArticle[] = published.map((a) => ({
+            id: a.id || a.title,
+            title: a.title,
+            category: a.category as any,
+            categorySlug: a.categorySlug as any,
+            readTime: a.readTime,
+            date: a.date,
+            author: a.author,
+            excerpt: a.excerpt,
+            image: a.image,
+            tags: a.tags,
+            content: a.content,
+          }));
+          setArticlesList(mapped);
+        }
+      })
+      .catch((err) => {
+        console.warn('Could not load dynamic blog articles from Supabase:', err);
+      });
+  }, []);
 
   // Check URL query param e.g. /blog?article=costs
   useEffect(() => {
     const articleParam = searchParams.get('article');
-    if (articleParam && blogArticles[articleParam]) {
+    if (articleParam) {
       onReadArticle(articleParam);
     }
   }, [searchParams, onReadArticle]);
@@ -31,7 +59,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({
   const filteredArticles = useMemo(() => {
     const query = searchQuery.toLowerCase().trim();
 
-    return blogArticlesList.filter((article) => {
+    return articlesList.filter((article) => {
       const matchesCategory =
         currentCategory === 'all' || article.categorySlug === currentCategory;
 
@@ -43,9 +71,10 @@ export const BlogPage: React.FC<BlogPageProps> = ({
 
       return matchesCategory && matchesSearch;
     });
-  }, [searchQuery, currentCategory]);
+  }, [searchQuery, currentCategory, articlesList]);
 
-  const featuredPost = blogArticles['costs'];
+  // Featured post is the first article or costs
+  const featuredPost = articlesList[0] || blogArticles['costs'];
 
   return (
     <main>
@@ -274,7 +303,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({
                 Submit Property Request
               </a>
               <a
-                href={siteConfig.whatsappUrl}
+                href="https://wa.me/2347071987799"
                 className="btn"
                 style={{ background: '#fff', color: 'var(--emerald-dark)' }}
                 target="_blank"

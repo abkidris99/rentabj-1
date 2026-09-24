@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { blogArticlesList } from '../data/blogArticles';
+import { getArticles } from '../lib/supabaseService';
 import { BlogCard } from './BlogCard';
+import { BlogArticle } from '../types';
 
 interface BlogSectionProps {
   onReadArticle: (articleId: string) => void;
@@ -16,9 +18,36 @@ export const BlogSection: React.FC<BlogSectionProps> = ({
   onShareArticle,
 }) => {
   const [activeCategory, setActiveCategory] = useState<string>('all');
+  const [articles, setArticles] = useState<BlogArticle[]>(blogArticlesList);
 
-  // On the homepage, display the top 3 featured articles (matching index.html)
-  const homeArticles = blogArticlesList.slice(0, 3);
+  useEffect(() => {
+    getArticles()
+      .then((data) => {
+        const published = data.filter((a) => a.published !== false);
+        if (published.length > 0) {
+          const mapped: BlogArticle[] = published.map((a) => ({
+            id: a.id || a.title,
+            title: a.title,
+            category: a.category as any,
+            categorySlug: a.categorySlug as any,
+            readTime: a.readTime,
+            date: a.date,
+            author: a.author,
+            excerpt: a.excerpt,
+            image: a.image,
+            tags: a.tags,
+            content: a.content,
+          }));
+          setArticles(mapped);
+        }
+      })
+      .catch((err) => {
+        console.warn('Could not load dynamic blog articles from Supabase:', err);
+      });
+  }, []);
+
+  // Display top 3 on home section
+  const homeArticles = articles.slice(0, 3);
 
   const filteredArticles =
     activeCategory === 'all'
