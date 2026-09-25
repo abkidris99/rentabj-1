@@ -11,7 +11,7 @@ export const PrivacyPolicyPage: React.FC = () => {
       <SEO 
         title="Privacy Policy | RentABJ Homes"
         description="Read the Privacy Policy of RentABJ Homes to understand how we handle your personal data and property requests."
-        canonicalUrl="https://rentabj.com/privacy-policy"
+        canonicalUrl="https://www.rentabj.com.ng/privacy-policy"
       />
       <div className="container" style={{ maxWidth: '800px', margin: '0 auto' }}>
         <h1 className="section-title">Privacy Policy</h1>

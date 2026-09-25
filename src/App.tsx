@@ -22,6 +22,7 @@ import { LocationsPage } from './pages/LocationsPage';
 import { FaqPage } from './pages/FaqPage';
 import { ContactPage } from './pages/ContactPage';
 import { PropertiesPage } from './pages/PropertiesPage';
+import { PropertyDetailPage } from './pages/PropertyDetailPage';
 import { RequestPropertyPage } from './pages/RequestPropertyPage';
 import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
 import { TermsPage } from './pages/TermsPage';
@@ -188,6 +189,7 @@ const PublicSite: React.FC = () => {
         <Route path="/faq" element={<FaqPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/properties" element={<PropertiesPage />} />
+        <Route path="/property/:slug" element={<PropertyDetailPage />} />
         <Route path="/request-property" element={<RequestPropertyPage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
         <Route path="/terms" element={<TermsPage />} />

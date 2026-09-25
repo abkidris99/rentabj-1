@@ -12,7 +12,7 @@ export const ContactPage: React.FC = () => {
       <SEO 
         title="Contact Us | RentABJ Homes"
         description="Get in touch with RentABJ Homes. We are ready to assist you in finding your perfect rental property in Abuja."
-        canonicalUrl="https://rentabj.com/contact"
+        canonicalUrl="https://www.rentabj.com.ng/contact"
       />
       <ContactSection isPage={true} />
     </main>

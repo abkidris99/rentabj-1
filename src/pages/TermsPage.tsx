@@ -11,7 +11,7 @@ export const TermsPage: React.FC = () => {
       <SEO 
         title="Terms & Conditions | RentABJ Homes"
         description="Read the Terms and Conditions for using RentABJ Homes to find your rental property in Abuja."
-        canonicalUrl="https://rentabj.com/terms"
+        canonicalUrl="https://www.rentabj.com.ng/terms"
       />
       <div className="container" style={{ maxWidth: '800px', margin: '0 auto' }}>
         <h1 className="section-title">Terms & Conditions</h1>

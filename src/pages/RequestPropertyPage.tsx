@@ -12,7 +12,7 @@ export const RequestPropertyPage: React.FC = () => {
       <SEO 
         title="Request a Property in Abuja | RentABJ Homes"
         description="Fill out our property request form to find your ideal rental apartment or house in Abuja quickly."
-        canonicalUrl="https://rentabj.com/request-property"
+        canonicalUrl="https://www.rentabj.com.ng/request-property"
       />
       <PropertyRequestForm isPage={true} />
     </main>

@@ -42,7 +42,7 @@ export const AdminLogin: React.FC = () => {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="admin@rentabj.com"
+              placeholder="admin@rentabj.com.ng"
               required
               autoComplete="email"
             />

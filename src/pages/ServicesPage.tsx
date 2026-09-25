@@ -12,7 +12,7 @@ export const ServicesPage: React.FC = () => {
       <SEO 
         title="Our Services | RentABJ Homes"
         description="Discover the services offered by RentABJ Homes, including property search, inspection, and lease processing in Abuja."
-        canonicalUrl="https://rentabj.com/services"
+        canonicalUrl="https://www.rentabj.com.ng/services"
       />
       <Services isPage={true} />
     </main>

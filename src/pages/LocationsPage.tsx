@@ -12,7 +12,7 @@ export const LocationsPage: React.FC = () => {
       <SEO 
         title="Abuja Neighborhoods & Locations | RentABJ Homes"
         description="Explore verified apartments and houses for rent across prime Abuja locations like Gwarinpa, Maitama, Jahi, and Wuse."
-        canonicalUrl="https://rentabj.com/locations"
+        canonicalUrl="https://www.rentabj.com.ng/locations"
       />
       <Locations isPage={true} />
     </main>

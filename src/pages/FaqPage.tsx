@@ -12,7 +12,7 @@ export const FaqPage: React.FC = () => {
       <SEO 
         title="Frequently Asked Questions (FAQ) | RentABJ Homes"
         description="Find answers to common questions about renting apartments, agent fees, and lease agreements in Abuja."
-        canonicalUrl="https://rentabj.com/faq"
+        canonicalUrl="https://www.rentabj.com.ng/faq"
       />
       <FaqSection isPage={true} />
     </main>
