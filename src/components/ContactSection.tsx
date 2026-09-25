@@ -1,7 +1,12 @@
 import React from 'react';
 import { siteConfig } from '../data/siteConfig';
 
-export const ContactSection: React.FC = () => {
+interface ContactSectionProps {
+  isPage?: boolean;
+}
+
+export const ContactSection: React.FC<ContactSectionProps> = ({ isPage }) => {
+  const TitleTag = isPage ? 'h1' : 'h2';
   return (
     <>
       <section>
@@ -33,7 +38,7 @@ export const ContactSection: React.FC = () => {
       <section id="contact" className="bg-light">
         <div className="container">
           <span className="eyebrow">Get In Touch</span>
-          <h2 className="section-title">Contact Us</h2>
+          <TitleTag className="section-title">Contact Us</TitleTag>
           <div className="contact-grid">
             <div className="contact-card">
               <div className="contact-row">

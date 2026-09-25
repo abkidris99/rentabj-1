@@ -4,7 +4,12 @@ import { getProperties, PropertyDoc } from '../lib/supabaseService';
 import { PropertyCard } from './PropertyCard';
 import { Property } from '../types';
 
-export const FeaturedProperties: React.FC = () => {
+interface FeaturedPropertiesProps {
+  isPage?: boolean;
+}
+
+export const FeaturedProperties: React.FC<FeaturedPropertiesProps> = ({ isPage }) => {
+  const TitleTag = isPage ? 'h1' : 'h2';
   const [properties, setProperties] = useState<Property[]>(featuredProperties);
 
   useEffect(() => {
@@ -37,9 +42,12 @@ export const FeaturedProperties: React.FC = () => {
     <section id="featured-properties" className="bg-light">
       <div className="container">
         <span className="eyebrow">Featured Properties</span>
-        <h2 className="section-title">Available Right Now</h2>
-        <p className="section-sub">
-          A sample of verified properties currently available across Abuja.
+        <TitleTag className="section-title">Browse Rental Properties in Abuja</TitleTag>
+        <p className="section-sub" style={{ marginBottom: '1.5rem' }}>
+          Finding the perfect home in the capital city can be challenging, but RentABJ Homes simplifies the process. We offer a wide range of rental properties in Abuja to suit every lifestyle and budget.
+        </p>
+        <p className="section-sub" style={{ fontSize: '1rem', color: '#6b7280', marginBottom: '2.5rem', maxWidth: '800px', marginLeft: 'auto', marginRight: 'auto' }}>
+          Whether you are a young professional searching for a modern self-contain unit, a growing family needing a spacious duplex, or a business looking for a strategic commercial space, our curated listings have you covered. All our apartments and houses for rent in Abuja are physically verified by our team, ensuring you get exactly what you see.
         </p>
 
         <div className="prop-grid">

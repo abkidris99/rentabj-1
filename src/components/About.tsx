@@ -1,13 +1,18 @@
 import React from 'react';
 import { siteConfig } from '../data/siteConfig';
 
-export const About: React.FC = () => {
+interface AboutProps {
+  isPage?: boolean;
+}
+
+export const About: React.FC<AboutProps> = ({ isPage }) => {
+  const TitleTag = isPage ? 'h1' : 'h2';
   return (
     <section id="about">
       <div className="container about-grid">
         <div className="about-media">
           <img
-            src="https://images.unsplash.com/photo-1560184897-ae75f418493e?q=80&w=1000&auto=format&fit=crop"
+            src="/images/general/about.jpg"
             alt="Modern apartment interior in Abuja"
             loading="lazy"
           />
@@ -18,13 +23,12 @@ export const About: React.FC = () => {
         </div>
         <div>
           <span className="eyebrow">About RentABJ Homes</span>
-          <h2 className="section-title">Why Choose RentABJ Homes?</h2>
-          <p className="section-sub">
-            RentABJ Homes helps tenants find quality rental properties across
-            Abuja through verified listings, professional guidance and a seamless
-            rental experience. Whether you're looking for a self-contained
-            apartment, family home, duplex or commercial space, we help you find
-            the right property quickly and transparently.
+          <TitleTag className="section-title">Why Choose RentABJ Homes?</TitleTag>
+          <p className="section-sub" style={{ marginBottom: '1rem' }}>
+            The Abuja real estate market can be stressful, with hidden fees and unverified agents. RentABJ Homes was built to solve this. We are dedicated to providing only <strong>verified apartments in Abuja</strong>, meaning every property on our platform has been physically inspected by our team to guarantee its authenticity and condition.
+          </p>
+          <p className="section-sub" style={{ fontSize: '1rem', color: '#6b7280' }}>
+            We take the guesswork out of property sourcing, protecting you from scams and substandard housing. Our transparent approach means you know exactly what the agency and legal fees are upfront. From the moment you contact us to the day you collect your keys, we provide hands-on assistance, making us the most trusted name for rental properties in Abuja.
           </p>
           <div className="hero-btns" style={{ marginTop: '26px' }}>
             <a

@@ -30,22 +30,22 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMobileMenu }) => {
 
           <ul className="nav-links">
             <li>
-              <Link to={isBlog ? '/#home' : '#home'}>Home</Link>
+              <Link to="/">Home</Link>
             </li>
             <li>
-              <a href={isBlog ? '/#about' : '#about'}>About</a>
+              <Link to="/about">About</Link>
             </li>
             <li>
-              <a href={isBlog ? '/#services' : '#services'}>Services</a>
+              <Link to="/services">Services</Link>
             </li>
             <li>
-              <a href={isBlog ? '/#locations' : '#locations'}>Locations</a>
+              <Link to="/locations">Locations</Link>
             </li>
             <li>
-              <a href={isBlog ? '/#faq' : '#faq'}>FAQ</a>
+              <Link to="/faq">FAQ</Link>
             </li>
             <li>
-              <a href={isBlog ? '/#property-request' : '#property-request'}>Find a Property</a>
+              <Link to="/properties">Find a Property</Link>
             </li>
             <li>
               <Link to="/blog" className={isBlog ? 'active' : ''}>
@@ -54,11 +54,11 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMobileMenu }) => {
             </li>
             {!isBlog && (
               <li>
-                <a href="#testimonials">Testimonials</a>
+                <a href="/#testimonials">Testimonials</a>
               </li>
             )}
             <li>
-              <a href={isBlog ? '/#contact' : '#contact'}>Contact</a>
+              <Link to="/contact">Contact</Link>
             </li>
           </ul>
 

@@ -14,17 +14,17 @@ export const Footer: React.FC = () => {
           <div className="footer-links">
             <div className="footer-col">
               <h5>Company</h5>
-              <a href="/#about">About</a>
-              <a href="/#services">Services</a>
-              <a href="/#locations">Locations</a>
-              <a href="/#faq">FAQ</a>
-              <a href="/#blog">Blog</a>
+              <Link to="/about">About</Link>
+              <Link to="/services">Services</Link>
+              <Link to="/locations">Locations</Link>
+              <Link to="/faq">FAQ</Link>
+              <Link to="/blog">Blog</Link>
               <Link to="/blog">Full Archive</Link>
             </div>
             <div className="footer-col">
               <h5>Legal</h5>
-              <a href="/#">Privacy Policy</a>
-              <a href="/#">Terms & Conditions</a>
+              <Link to="/privacy-policy">Privacy Policy</Link>
+              <Link to="/terms">Terms & Conditions</Link>
             </div>
             <div className="footer-col">
               <h5>Follow Us</h5>

@@ -16,6 +16,15 @@ import { AdminLeads } from './pages/admin/AdminLeads';
 import { AdminBlog } from './pages/admin/AdminBlog';
 import { AdminProperties } from './pages/admin/AdminProperties';
 import { AdminSettings } from './pages/admin/AdminSettings';
+import { AboutPage } from './pages/AboutPage';
+import { ServicesPage } from './pages/ServicesPage';
+import { LocationsPage } from './pages/LocationsPage';
+import { FaqPage } from './pages/FaqPage';
+import { ContactPage } from './pages/ContactPage';
+import { PropertiesPage } from './pages/PropertiesPage';
+import { RequestPropertyPage } from './pages/RequestPropertyPage';
+import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
+import { TermsPage } from './pages/TermsPage';
 
 import { trackVisitor } from './lib/tracker';
 
@@ -173,6 +182,15 @@ const PublicSite: React.FC = () => {
             />
           }
         />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/services" element={<ServicesPage />} />
+        <Route path="/locations" element={<LocationsPage />} />
+        <Route path="/faq" element={<FaqPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/properties" element={<PropertiesPage />} />
+        <Route path="/request-property" element={<RequestPropertyPage />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+        <Route path="/terms" element={<TermsPage />} />
         <Route
           path="*"
           element={

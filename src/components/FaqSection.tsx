@@ -34,7 +34,12 @@ const faqs: FaqItem[] = [
   },
 ];
 
-export const FaqSection: React.FC = () => {
+interface FaqSectionProps {
+  isPage?: boolean;
+}
+
+export const FaqSection: React.FC<FaqSectionProps> = ({ isPage }) => {
+  const TitleTag = isPage ? 'h1' : 'h2';
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const toggle = (idx: number) => {
@@ -46,7 +51,7 @@ export const FaqSection: React.FC = () => {
       <div className="container">
         <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto 48px' }}>
           <span className="eyebrow">Frequently Asked Questions</span>
-          <h2 className="section-title">Renting in Abuja: Everything You Need to Know</h2>
+          <TitleTag className="section-title">Renting in Abuja: Everything You Need to Know</TitleTag>
           <p className="section-sub" style={{ margin: '0 auto' }}>
             Clear, honest answers to help you navigate Abuja house hunting, legal fees, inspections, and lease terms without stress.
           </p>

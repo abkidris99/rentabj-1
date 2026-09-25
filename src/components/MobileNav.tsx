@@ -60,24 +60,21 @@ export const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose }) => {
         <Link to="/" onClick={handleLinkClick}>
           Home
         </Link>
-        <a href={isBlog ? '/#about' : '#about'} onClick={handleLinkClick}>
+        <Link to="/about" onClick={handleLinkClick}>
           About
-        </a>
-        <a href={isBlog ? '/#services' : '#services'} onClick={handleLinkClick}>
+        </Link>
+        <Link to="/services" onClick={handleLinkClick}>
           Services
-        </a>
-        <a href={isBlog ? '/#locations' : '#locations'} onClick={handleLinkClick}>
+        </Link>
+        <Link to="/locations" onClick={handleLinkClick}>
           Locations
-        </a>
-        <a href={isBlog ? '/#faq' : '#faq'} onClick={handleLinkClick}>
+        </Link>
+        <Link to="/faq" onClick={handleLinkClick}>
           FAQ
-        </a>
-        <a
-          href={isBlog ? '/#property-request' : '#property-request'}
-          onClick={handleLinkClick}
-        >
+        </Link>
+        <Link to="/properties" onClick={handleLinkClick}>
           Find a Property
-        </a>
+        </Link>
         <Link
           to="/blog"
           style={{ color: 'var(--gold)' }}
@@ -86,13 +83,13 @@ export const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose }) => {
           Blog & Archive
         </Link>
         {!isBlog && (
-          <a href="#testimonials" onClick={handleLinkClick}>
+          <a href="/#testimonials" onClick={handleLinkClick}>
             Testimonials
           </a>
         )}
-        <a href={isBlog ? '/#contact' : '#contact'} onClick={handleLinkClick}>
+        <Link to="/contact" onClick={handleLinkClick}>
           Contact
-        </a>
+        </Link>
         <a
           href={siteConfig.whatsappUrl}
           className="nav-wa"

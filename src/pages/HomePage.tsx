@@ -7,6 +7,7 @@ import { PropertyRequestForm } from '../components/PropertyRequestForm';
 import { PriceGuide } from '../components/PriceGuide';
 import { FeaturedProperties } from '../components/FeaturedProperties';
 import { WhyChooseUs } from '../components/WhyChooseUs';
+import { HowItWorks } from '../components/HowItWorks';
 import { VirtualTours } from '../components/VirtualTours';
 import { BlogSection } from '../components/BlogSection';
 import { Testimonials } from '../components/Testimonials';
@@ -35,6 +36,7 @@ export const HomePage: React.FC<HomePageProps> = ({
       <PriceGuide />
       <FeaturedProperties />
       <WhyChooseUs />
+      <HowItWorks />
       <VirtualTours />
       <BlogSection
         onReadArticle={onReadArticle}

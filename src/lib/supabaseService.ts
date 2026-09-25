@@ -200,6 +200,7 @@ export async function deleteArticle(id: string): Promise<void> {
 
 export interface PropertyDoc {
   id?: string;
+  slug?: string;
   title: string;
   location: string;
   price: string;
@@ -223,6 +224,7 @@ export async function getProperties(): Promise<PropertyDoc[]> {
 
   return (data ?? []).map((row) => ({
     id: row.id,
+    slug: row.slug ?? undefined,
     title: row.title,
     location: row.location,
     price: row.price,
@@ -237,12 +239,40 @@ export async function getProperties(): Promise<PropertyDoc[]> {
   }));
 }
 
+export async function getPropertyBySlug(slug: string): Promise<PropertyDoc | null> {
+  const { data, error } = await supabase
+    .from('properties')
+    .select('*')
+    .eq('slug', slug)
+    .maybeSingle();
+
+  if (error) throw error;
+  if (!data) return null;
+
+  return {
+    id: data.id,
+    slug: data.slug ?? undefined,
+    title: data.title,
+    location: data.location,
+    price: data.price,
+    period: data.period,
+    bedrooms: data.bedrooms,
+    description: data.description ?? '',
+    image: data.image ?? '',
+    tag: data.tag ?? '',
+    whatsappMessage: data.whatsapp_message ?? '',
+    available: data.available ?? true,
+    created_at: data.created_at,
+  };
+}
+
 export async function saveProperty(
   data: Omit<PropertyDoc, 'id' | 'created_at'>
 ): Promise<string> {
   const { data: row, error } = await supabase
     .from('properties')
     .insert({
+      slug: data.slug,
       title: data.title,
       location: data.location,
       price: data.price,
@@ -265,6 +295,7 @@ export async function updateProperty(id: string, data: Partial<PropertyDoc>): Pr
   const { error } = await supabase
     .from('properties')
     .update({
+      ...(data.slug !== undefined && { slug: data.slug }),
       ...(data.title !== undefined && { title: data.title }),
       ...(data.location !== undefined && { location: data.location }),
       ...(data.price !== undefined && { price: data.price }),
@@ -284,6 +315,38 @@ export async function updateProperty(id: string, data: Partial<PropertyDoc>): Pr
 export async function deleteProperty(id: string): Promise<void> {
   const { error } = await supabase.from('properties').delete().eq('id', id);
   if (error) throw error;
+}
+
+export async function generateUniquePropertySlug(baseTitle: string, baseLocation: string, excludeId?: string): Promise<string> {
+  // 1. Clean and generate base slug
+  const combined = `${baseTitle} ${baseLocation}`;
+  const baseSlug = combined
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '') // remove special chars
+    .trim()
+    .replace(/\s+/g, '-') // spaces to hyphens
+    .replace(/-+/g, '-'); // remove duplicate hyphens
+    
+  let slug = baseSlug;
+  let counter = 2;
+  
+  while (true) {
+    let query = supabase.from('properties').select('id').eq('slug', slug);
+    if (excludeId) {
+      query = query.neq('id', excludeId);
+    }
+    
+    const { data, error } = await query;
+    if (error) throw error;
+    
+    if (!data || data.length === 0) {
+      return slug; // Unique!
+    }
+    
+    // Slug exists, append counter and try again
+    slug = `${baseSlug}-${counter}`;
+    counter++;
+  }
 }
 
 // ─── VISITOR ANALYTICS ────────────────────────────────────────────────────────

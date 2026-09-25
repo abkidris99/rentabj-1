@@ -3,7 +3,12 @@ import { siteConfig } from '../data/siteConfig';
 import { PropertyRequestData } from '../types';
 import { saveLead } from '../lib/supabaseService';
 
-export const PropertyRequestForm: React.FC = () => {
+interface PropertyRequestFormProps {
+  isPage?: boolean;
+}
+
+export const PropertyRequestForm: React.FC<PropertyRequestFormProps> = ({ isPage }) => {
+  const TitleTag = isPage ? 'h1' : 'h2';
   const [formData, setFormData] = useState<PropertyRequestData>({
     fullName: '',
     phoneNumber: '',
@@ -82,9 +87,9 @@ export const PropertyRequestForm: React.FC = () => {
     <section id="property-request" className="bg-light">
       <div className="container">
         <span className="eyebrow">Request a Property</span>
-        <h2 className="section-title">
+        <TitleTag className="section-title">
           Click the Form Below to See Available Rental Options
-        </h2>
+        </TitleTag>
         <p className="section-sub">
           Tell us your preferred location, apartment type and budget. We'll match
           you with verified available properties and contact you with the best

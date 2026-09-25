@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { siteConfig } from '../data/siteConfig';
 
 export const Hero: React.FC = () => {
@@ -16,7 +17,7 @@ export const Hero: React.FC = () => {
       <div className="container">
         <div className="hero-inner">
           <h1>
-            Find <span className="accent">Verified</span> Rental Properties in Abuja
+            Find <span className="accent">Verified</span> Apartments & Houses for Rent in Abuja
           </h1>
           <p>
             Rent apartments, houses, duplexes and commercial spaces across Abuja
@@ -24,9 +25,9 @@ export const Hero: React.FC = () => {
             property search simple and stress-free.
           </p>
           <div className="hero-btns">
-            <a href="#locations" className="btn btn-primary">
+            <Link to="/properties" className="btn btn-primary">
               Browse Properties
-            </a>
+            </Link>
             <a
               href={siteConfig.whatsappUrl}
               className="btn btn-secondary"

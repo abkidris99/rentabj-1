@@ -5,26 +5,28 @@ import {
   updateProperty,
   deleteProperty,
   PropertyDoc,
+  generateUniquePropertySlug,
 } from '../../lib/supabaseService';
 import { featuredProperties } from '../../data/properties';
 
 const PRESET_IMAGES = [
-  { label: 'Modern Flat', url: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=700&auto=format&fit=crop' },
-  { label: 'Spacious Apt', url: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?q=80&w=700&auto=format&fit=crop' },
-  { label: 'Duplex', url: 'https://images.unsplash.com/photo-1613977257363-707ba9348227?q=80&w=700&auto=format&fit=crop' },
-  { label: 'Studio', url: 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=700&auto=format&fit=crop' },
-  { label: 'Cozy 1-Bed', url: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=700&auto=format&fit=crop' },
-  { label: 'Office Space', url: 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=80&w=700&auto=format&fit=crop' },
+  { label: 'Modern Flat', url: '/images/properties/karsana.jpg' },
+  { label: 'Spacious Apt', url: '/images/properties/jahi.jpg' },
+  { label: 'Duplex', url: '/images/properties/dawaki.jpg' },
+  { label: 'Studio', url: '/images/properties/gwarinpa.jpg' },
+  { label: 'Cozy 1-Bed', url: '/images/properties/lifecamp.jpg' },
+  { label: 'Office Space', url: '/images/properties/wuse.jpg' },
 ];
 
 const INITIAL_FORM: Omit<PropertyDoc, 'id' | 'created_at'> = {
+  slug: undefined,
   title: '',
   location: '',
   price: '₦2,500,000',
   period: '/ yr',
   bedrooms: '2 Bedrooms',
   description: '',
-  image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=700&auto=format&fit=crop',
+  image: '/images/properties/karsana.jpg',
   tag: 'Featured',
   whatsappMessage: '',
   available: true,
@@ -74,6 +76,7 @@ export const AdminProperties: React.FC = () => {
   const openEditModal = (prop: PropertyDoc) => {
     setEditingId(prop.id || null);
     setForm({
+      slug: prop.slug,
       title: prop.title,
       location: prop.location,
       price: prop.price,
@@ -103,8 +106,22 @@ export const AdminProperties: React.FC = () => {
 
     try {
       setSaving(true);
+      
+      let finalSlug = form.slug;
+      if (editingId) {
+        const original = properties.find(p => p.id === editingId);
+        // If identity changed or no slug exists, generate new one
+        if (!finalSlug || (original && (original.title !== form.title || original.location !== form.location))) {
+          finalSlug = await generateUniquePropertySlug(form.title, form.location, editingId);
+        }
+      } else {
+        // New property
+        finalSlug = await generateUniquePropertySlug(form.title, form.location);
+      }
+
       const payload = {
         ...form,
+        slug: finalSlug,
         whatsappMessage:
           form.whatsappMessage.trim() ||
           `Hi, I'm interested in the ${form.title} in ${form.location}`,
@@ -326,11 +343,11 @@ export const AdminProperties: React.FC = () => {
             <div key={prop.id} className="admin-prop-card">
               <div className="admin-prop-media">
                 <img
-                  src={prop.image || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=700'}
+                  src={prop.image || '/images/properties/karsana.jpg'}
                   alt={prop.title}
                   onError={(e) => {
                     (e.target as HTMLImageElement).src =
-                      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=700';
+                      '/images/properties/karsana.jpg';
                   }}
                 />
                 <span className="admin-prop-tag">{prop.tag || prop.location}</span>
@@ -481,7 +498,7 @@ export const AdminProperties: React.FC = () => {
                   <label>Image URL</label>
                   <input
                     type="url"
-                    placeholder="https://images.unsplash.com/..."
+                    placeholder="/images/properties/..."
                     value={form.image}
                     onChange={(e) => setForm({ ...form, image: e.target.value })}
                   />
