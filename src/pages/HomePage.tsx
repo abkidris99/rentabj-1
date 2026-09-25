@@ -10,6 +10,7 @@ import { WhyChooseUs } from '../components/WhyChooseUs';
 import { VirtualTours } from '../components/VirtualTours';
 import { BlogSection } from '../components/BlogSection';
 import { Testimonials } from '../components/Testimonials';
+import { FaqSection } from '../components/FaqSection';
 import { ContactSection } from '../components/ContactSection';
 
 interface HomePageProps {
@@ -40,6 +41,7 @@ export const HomePage: React.FC<HomePageProps> = ({
         onShareArticle={onShareArticle}
       />
       <Testimonials />
+      <FaqSection />
       <ContactSection />
     </main>
   );

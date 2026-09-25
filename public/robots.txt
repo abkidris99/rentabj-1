@@ -1,0 +1,13 @@
+# RentABJ Homes Robots.txt
+# https://rentabj.com
+
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /admin/*
+
+# Host
+Host: https://rentabj.com
+
+# Sitemap
+Sitemap: https://rentabj.com/sitemap.xml

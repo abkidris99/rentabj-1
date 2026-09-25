@@ -42,6 +42,9 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMobileMenu }) => {
               <a href={isBlog ? '/#locations' : '#locations'}>Locations</a>
             </li>
             <li>
+              <a href={isBlog ? '/#faq' : '#faq'}>FAQ</a>
+            </li>
+            <li>
               <a href={isBlog ? '/#property-request' : '#property-request'}>Find a Property</a>
             </li>
             <li>

@@ -17,6 +17,7 @@ export const Footer: React.FC = () => {
               <a href="/#about">About</a>
               <a href="/#services">Services</a>
               <a href="/#locations">Locations</a>
+              <a href="/#faq">FAQ</a>
               <a href="/#blog">Blog</a>
               <Link to="/blog">Full Archive</Link>
             </div>

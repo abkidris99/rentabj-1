@@ -69,6 +69,9 @@ export const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose }) => {
         <a href={isBlog ? '/#locations' : '#locations'} onClick={handleLinkClick}>
           Locations
         </a>
+        <a href={isBlog ? '/#faq' : '#faq'} onClick={handleLinkClick}>
+          FAQ
+        </a>
         <a
           href={isBlog ? '/#property-request' : '#property-request'}
           onClick={handleLinkClick}

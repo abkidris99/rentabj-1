@@ -14,7 +14,11 @@ export const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
   return (
     <div className="prop-card">
       <div className="prop-media">
-        <img src={property.image} alt={property.title} loading="lazy" />
+        <img
+          src={property.image}
+          alt={`${property.title} for rent in ${property.location}, Abuja`}
+          loading="lazy"
+        />
         <span className="prop-tag">{property.tag}</span>
         <span className="prop-rent">
           {property.price} {property.period}
