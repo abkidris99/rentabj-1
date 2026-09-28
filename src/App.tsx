@@ -26,6 +26,7 @@ import { PropertyDetailPage } from './pages/PropertyDetailPage';
 import { RequestPropertyPage } from './pages/RequestPropertyPage';
 import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
 import { TermsPage } from './pages/TermsPage';
+import { RentInGwarinpaPage } from './pages/RentInGwarinpaPage';
 
 import { trackVisitor } from './lib/tracker';
 
@@ -193,6 +194,7 @@ const PublicSite: React.FC = () => {
         <Route path="/request-property" element={<RequestPropertyPage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
         <Route path="/terms" element={<TermsPage />} />
+        <Route path="/rent-in-gwarinpa" element={<RentInGwarinpaPage />} />
         <Route
           path="*"
           element={

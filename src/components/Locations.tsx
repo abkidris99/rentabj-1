@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { locationsData } from '../data/locations';
 
 interface LocationsProps {
@@ -19,18 +20,30 @@ export const Locations: React.FC<LocationsProps> = ({ isPage }) => {
           We currently serve highly sought-after areas including Gwarinpa, Life Camp, Jahi, and Katampe. We also have excellent housing options in Kubwa, Dawaki, Karsana, and Lugbe, providing affordable yet premium living environments. Whether you want to live close to the central business district or prefer a quiet suburban retreat, we have the right neighborhood for you.
         </p>
         <div className="loc-scroll">
-          {locationsData.map((loc) => (
-            <div className="loc-card" key={loc.id}>
-              <img
-                src={loc.image}
-                alt={`Rental apartments and houses in ${loc.name}, Abuja`}
-                loading="lazy"
-              />
-              <div className="loc-overlay">
-                <span>{loc.name}</span>
+          {locationsData.map((loc) => {
+            const cardContent = (
+              <div className="loc-card" key={loc.id}>
+                <img
+                  src={loc.image}
+                  alt={`Rental apartments and houses in ${loc.name}, Abuja`}
+                  loading="lazy"
+                />
+                <div className="loc-overlay">
+                  <span>{loc.name}</span>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+
+            if (loc.id === 'gwarinpa') {
+              return (
+                <Link to="/rent-in-gwarinpa" key={loc.id} style={{ display: 'block', textDecoration: 'none' }}>
+                  {cardContent}
+                </Link>
+              );
+            }
+
+            return cardContent;
+          })}
         </div>
       </div>
     </section>
