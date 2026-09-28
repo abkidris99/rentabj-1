@@ -140,9 +140,21 @@ export const Locations: React.FC<LocationsProps> = ({ isPage }) => {
                 </div>
               );
 
-              if (loc.id === 'gwarinpa') {
+              const routeMap: Record<string, string> = {
+                'gwarinpa': '/rent-in-gwarinpa',
+                'lifecamp': '/rent-in-life-camp',
+                'jahi': '/rent-in-jahi',
+                'katampe': '/rent-in-katampe',
+                'kubwa': '/rent-in-kubwa',
+                'dawaki': '/rent-in-dawaki',
+                'karsana': '/rent-in-karsana',
+              };
+
+              const targetRoute = routeMap[loc.id];
+
+              if (targetRoute) {
                 return (
-                  <Link to="/rent-in-gwarinpa" key={loc.id} style={{ display: 'block', textDecoration: 'none' }}>
+                  <Link to={targetRoute} key={loc.id} style={{ display: 'block', textDecoration: 'none' }}>
                     {cardContent}
                   </Link>
                 );

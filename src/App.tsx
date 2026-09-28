@@ -27,6 +27,12 @@ import { RequestPropertyPage } from './pages/RequestPropertyPage';
 import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
 import { TermsPage } from './pages/TermsPage';
 import { RentInGwarinpaPage } from './pages/RentInGwarinpaPage';
+import { RentInLifeCampPage } from './pages/RentInLifeCampPage';
+import { RentInJahiPage } from './pages/RentInJahiPage';
+import { RentInKatampePage } from './pages/RentInKatampePage';
+import { RentInKubwaPage } from './pages/RentInKubwaPage';
+import { RentInDawakiPage } from './pages/RentInDawakiPage';
+import { RentInKarsanaPage } from './pages/RentInKarsanaPage';
 
 import { trackVisitor } from './lib/tracker';
 
@@ -195,6 +201,12 @@ const PublicSite: React.FC = () => {
         <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
         <Route path="/terms" element={<TermsPage />} />
         <Route path="/rent-in-gwarinpa" element={<RentInGwarinpaPage />} />
+        <Route path="/rent-in-life-camp" element={<RentInLifeCampPage />} />
+        <Route path="/rent-in-jahi" element={<RentInJahiPage />} />
+        <Route path="/rent-in-katampe" element={<RentInKatampePage />} />
+        <Route path="/rent-in-kubwa" element={<RentInKubwaPage />} />
+        <Route path="/rent-in-dawaki" element={<RentInDawakiPage />} />
+        <Route path="/rent-in-karsana" element={<RentInKarsanaPage />} />
         <Route
           path="*"
           element={
